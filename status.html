@@ -339,7 +339,7 @@
             cursor: pointer;
         }
 
-        .product_active {
+        .product_active { 
             background-color: #222831;
             color: #ffffff;
         }
@@ -396,8 +396,8 @@
             <div class="content_header">
                 <h2>월별 합격률</h2>
                 <div class="btn_wrap">
-                    <span class="btn_active">월별</span>
-                    <span>주별</span>
+                    <span class="btn_active" onclick="changeProduct1(event)">월별</span>
+                    <span class="btn_active" onclick="changeProduct1(event)">주별</span>
                 </div>
             </div>
             <div>
@@ -480,6 +480,16 @@
         onLoadLateData();
     </script>
     <script>
+        function changeProduct1(event) {
+            const btn_wrap = document.getElementsByClassName('btn_active');
+
+            for (let i = 0; i < btn_wrap.length; i++) {
+                btn_wrap[i].classList.remove('btn_active');
+            }
+
+            event.target.classList.add('btn_active');
+        }
+
         function changeProduct(event) {
             const productList = document.getElementsByClassName('product_active');
 
