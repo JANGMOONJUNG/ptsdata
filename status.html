@@ -11,12 +11,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100;400&display=swap"
         rel="stylesheet">
-
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@100;400&display=swap"
-        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Roboto:wght@400;700&display=swap"
         rel="stylesheet">
     <style>
@@ -36,7 +30,6 @@
             color: #222831;
             padding: 20px 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
             display: flex;
             justify-content: space-around;
         }
@@ -138,13 +131,11 @@
             box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
         }
 
-
         .content2 {
             flex: 1;
             text-align: center;
             font-family: 'Roboto', sans-serif;
             padding: 20px 0px;
-
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -169,77 +160,6 @@
             min-height: 300px;
         }
 
-        #MonthlyWrap {
-            width: 1080px;
-            height: 440px;
-            background-color: beige;
-
-            position: relative;
-
-            display: flex;
-            gap: 20px;
-        }
-
-        #MonthlyWrap .lateBar {
-            width: 50px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #MonthlyWrap .late {
-            width: 50px;
-            height: 280px;
-
-            display: flex;
-            gap: 2px;
-
-            align-items: flex-end;
-        }
-
-        #MonthlyWrap .late .data {
-            width: 24px;
-            height: 240px;
-
-            background-color: red;
-            font-size: 10px;
-            font-weight: 700;
-            color: #ffffff;
-
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        #MonthlyWrap .late .data2 {
-            width: 24px;
-            height: 240px;
-
-            background-color: blue;
-            font-size: 10px;
-            font-weight: 700;
-            color: #ffffff;
-
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        #line {
-            width: 100%;
-            height: 0px;
-            border-top: 2px dashed black;
-            position: absolute;
-            top: 64px;
-        }
-
-        #lineLabel {
-            position: absolute;
-            top: 40px;
-            right: -60px;
-        }
-
         .content_wrap {
             width: 1200px;
             height: 680px;
@@ -256,10 +176,11 @@
 
         .chartWrap {
             width: 100%;
-            height: 480px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow-x: scroll;
+        }
+
+        .chartContainer {
+            height: 432px;
         }
 
         .content_header {
@@ -280,9 +201,24 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
             font-size: 12px;
+            cursor: pointer;
+        }
 
+        .btn_wrap2 {
+            display: flex;
+            border: 1px solid #222831;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .btn_wrap2>span {
+            width: 42px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
             cursor: pointer;
         }
 
@@ -301,14 +237,12 @@
         .tapBar>div {
             width: 150px;
             height: 40px;
-
             display: flex;
             justify-content: center;
             align-items: center;
-
             border-bottom: 1px solid #222831;
-
             font-weight: 900;
+            cursor: pointer;
         }
 
         .tap_active {
@@ -335,11 +269,10 @@
             justify-content: center;
             align-items: center;
             border-radius: 12px;
-
             cursor: pointer;
         }
 
-        .product_active { 
+        .product_active {
             background-color: #222831;
             color: #ffffff;
         }
@@ -359,7 +292,6 @@
             justify-content: center;
             align-items: center;
             border-radius: 12px;
-
             cursor: pointer;
         }
 
@@ -367,7 +299,58 @@
             background-color: #6986ff;
             color: #ffffff;
         }
+
+        .table_wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .table_wrap table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .table_wrap table,
+        .table_wrap th,
+        .table_wrap td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        .table_wrap th {
+            background-color: #222831;
+            color: white;
+        }
+
+        .table_wrap td {
+            font-size: 12px;
+        }
+
+        .table_wrap .summary {
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: #eeeeee;
+        }
+
+        .processContainer {
+            display: flex;
+            gap: 20px;
+        }
+
+        .processChart {
+            flex: 1;
+        }
+
+        .processTable {
+            flex: 1;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2"></script>
 </head>
 
 <body>
@@ -390,124 +373,654 @@
     <div class="content">
         <div class="content_wrap">
             <div class="tapBar">
-                <div class="tap_active">월/주간 합격률</div>
-                <div>공정/모듈별 합격률</div>
+                <div class="tap_active" onclick="changeTab(event, 'rate')">월/주간 합격률</div>
+                <div onclick="changeTab(event, 'process')">공정/모듈별 합격률</div>
             </div>
-            <div class="content_header">
-                <h2>월별 합격률</h2>
+            <div class="content_header" id="rateSection">
+                <h2 id="chartTitle">월별 합격률</h2>
                 <div class="btn_wrap">
-                    <span class="btn_active" onclick="changeProduct1(event)">월별</span>
-                    <span class="btn_active" onclick="changeProduct1(event)">주별</span>
+                    <span class="btn_active" onclick="changeValue(event, 'month')">월별</span>
+                    <span onclick="changeValue(event, 'week')">주별</span>
                 </div>
             </div>
-            <div>
+            <div id="rateContent">
                 <div class="product_list">
-                    <div class="product_item product_active" onclick="changeProduct(event)">CP</div>
-                    <div class="product_item" onclick="changeProduct(event)">LC</div>
-                    <div class="product_item" onclick="changeProduct(event)">SP</div>
+                    <!-- Product items will be dynamically generated here -->
                 </div>
                 <div class="product_option_list">
-                    <div class="product_option_item product_option_active" onclick="changeProductOption(event)">6E2
+                    <!-- Product option items will be dynamically generated here -->
+                </div>
+                <div class="chartWrap">
+                    <div class="chartContainer" id="chartContainer">
+                        <canvas id="myChart"></canvas>
                     </div>
-                    <div class="product_option_item" onclick="changeProductOption(event)">6EJ</div>
-                    <div class="product_option_item" onclick="changeProductOption(event)">6EN</div>
-                    <div class="product_option_item" onclick="changeProductOption(event)">6EL</div>
                 </div>
             </div>
-            <span>LC 6E2 제품 금번 주 PTS 달성률 % 입니다. 지난 주 대비 % 상승 하였습니다.</span>
-            <div class="chartWrap">
-                <div id="MonthlyWrap">
-                    <div id="line"></div>
-                    <span id="lineLabel">목표 90%</span>
+            <div id="processSection" style="display: none;">
+                <div class="processContainer">
+                    <div class="processChart">
+                        <div class="content_header" id="processHeader">
+                            <h2 id="processTitle">공정별 합격률 (WW26 vs WW27)</h2>
+                            <div class="btn_wrap2">
+                                <span class="btn_active" onclick="changeProcessMode(event, 'process')">공정별</span>
+                                <span onclick="changeProcessMode(event, 'module')">모듈별</span>
+                            </div>
+                        </div>
+                        <div class="product_list">
+                            <!-- Product items will be dynamically generated here -->
+                        </div>
+                        <div class="product_option_list">
+                            <!-- Product option items will be dynamically generated here -->
+                        </div>
+                        <div class="chartWrap">
+                            <div class="chartContainer" id="processChartContainer">
+                                <canvas id="processChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="processTable">
+                        <div class="table_wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>INDEX</th>
+                                        <th>4월</th>
+                                        <th>WW27</th>
+                                        <th>C/C</th>
+                                        <th>DIFF</th>
+                                        <th>ETCH</th>
+                                        <th>IMP</th>
+                                        <th>PHOTO</th>
+                                        <th>T/F</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="processTableBody">
+                                    <!-- Table data will be dynamically generated here -->
+                                </tbody>
+                            </table>
+                            <div class="summary" id="processSummary">
+                                <!-- Summary will be dynamically generated here -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
     <footer>
-        &copy; 2024 PTSData. All rights reserved.
+        <p>&copy; 2024. 개발PTS All rights reserved.</p>
     </footer>
+
     <script>
-        let lateList = [80, 60, 100, 70, 40, 90, 100];// 0~100;
-        let lateList2 = [70, 40, 80, 100, 60, 90, 60];// 0~100;
-
-        function createLateBar(month, num, num2) {
-            let lateBar = document.createElement('div');
-            lateBar.setAttribute('class', 'lateBar');
-
-            let late = document.createElement('div');
-            late.setAttribute('class', 'late');
-
-            if (document.getElementById('w7d').checked) {
-                let data = document.createElement('div');
-                data.setAttribute('class', 'data');
-                data.style.height = num / 100 * 240 + 'px'; // 0~240;
-                data.innerText = "w7d";
-
-                late.appendChild(data);
+        const productOptions = {
+            CP: {
+                options: ['1cp', '2cp', '3cp', '4cp', '5cp'],
+                data: {
+                    '1cp': { lateList: [80, 60, 100, 70, 40, 90, 100, 100, 70, 40, 90, 100] },
+                    '2cp': { lateList: [60, 80, 70, 90, 100, 50, 40, 100, 70, 40, 90, 100] },
+                    '3cp': { lateList: [100, 70, 60, 80, 90, 40, 50, 100, 70, 40, 90, 100] },
+                    '4cp': { lateList: [70, 100, 80, 60, 50, 90, 40, 100, 70, 40, 90, 100] },
+                    '5cp': { lateList: [70, 100, 80, 60, 50, 90, 40, 100, 70, 40, 90, 100] }
+                }
+            },
+            LC: {
+                options: ['1lc', '2lc', '3lc', '4lc'],
+                data: {
+                    '1lc': { lateList: [60, 70, 80, 100, 90, 50, 40, 100, 70, 40, 90, 100] },
+                    '2lc': { lateList: [80, 90, 100, 60, 50, 70, 40, 100, 70, 40, 90, 100] },
+                    '3lc': { lateList: [100, 80, 70, 50, 60, 40, 90, 100, 70, 40, 90, 100] },
+                    '4lc': { lateList: [70, 60, 90, 80, 40, 100, 50, 100, 70, 40, 90, 100] }
+                }
+            },
+            SP: {
+                options: ['1sp', '2sp', '3sp', '4sp'],
+                data: {
+                    '1sp': { lateList: [100, 60, 80, 70, 50, 40, 90, 100, 70, 40, 90, 100] },
+                    '2sp': { lateList: [60, 100, 70, 90, 80, 50, 40, 100, 70, 40, 90, 100] },
+                    '3sp': { lateList: [80, 70, 60, 100, 90, 40, 50, 100, 70, 40, 90, 100] },
+                    '4sp': { lateList: [70, 80, 100, 60, 50, 90, 40, 100, 70, 40, 90, 100] }
+                }
             }
+        };
 
-            if (document.getElementById('w7e').checked) {
-                let data2 = document.createElement('div');
-                data2.setAttribute('class', 'data2');
-                data2.style.height = num2 / 100 * 240 + 'px'; // 0~240;
-                data2.innerText = "w7e";
-
-                late.appendChild(data2);
+        const productOptions2 = {
+            CP: {
+                options: ['1cp', '2cp', '3cp', '4cp', '5cp'],
+                data: {
+                    '1cp': { lateList: Array.from({ length: 54 }, (_, i) => Math.floor(Math.random() * 31) + 70) },
+                    '2cp': { lateList: Array.from({ length: 54 }, (_, i) => Math.floor(Math.random() * 31) + 70) },
+                    '3cp': { lateList: Array.from({ length: 54 }, (_, i) => Math.floor(Math.random() * 31) + 70) },
+                    '4cp': { lateList: Array.from({ length: 54 }, (_, i) => Math.floor(Math.random() * 31) + 70) },
+                    '5cp': { lateList: Array.from({ length: 54 }, (_, i) => Math.floor(Math.random() * 31) + 70) }
+                }
+            },
+            LC: {
+                options: ['1lc', '2lc', '3lc', '4lc'],
+                data: {
+                    '1lc': { lateList: Array.from({ length: 54 }, (_, i) => Math.floor(Math.random() * 31) + 70) },
+                    '2lc': { lateList: Array.from({ length: 54 }, (_, i) => Math.floor(Math.random() * 31) + 70) },
+                    '3lc': { lateList: Array.from({ length: 54 }, (_, i) => Math.floor(Math.random() * 31) + 70) },
+                    '4lc': { lateList: Array.from({ length: 54 }, (_, i) => Math.floor(Math.random() * 31) + 70) }
+                }
+            },
+            SP: {
+                options: ['1sp', '2sp', '3sp', '4sp'],
+                data: {
+                    '1sp': { lateList: Array.from({ length: 54 }, (_, i) => Math.floor(Math.random() * 31) + 70) },
+                    '2sp': { lateList: Array.from({ length: 54 }, (_, i) => Math.floor(Math.random() * 31) + 70) },
+                    '3sp': { lateList: Array.from({ length: 54 }, (_, i) => Math.floor(Math.random() * 31) + 70) },
+                    '4sp': { lateList: Array.from({ length: 54 }, (_, i) => Math.floor(Math.random() * 31) + 70) }
+                }
             }
+        };
 
-
-            let span = document.createElement('span');
-            span.innerText = month + '월';
-
-            lateBar.appendChild(late);
-            lateBar.appendChild(span);
-
-            document.getElementById('MonthlyWrap').appendChild(lateBar);
-        }
-
-        function onLoadLateData() {
-            const prevList = document.getElementsByClassName('lateBar');
-
-            for (let i = prevList.length - 1; i >= 0; i--) {
-                document.getElementById('MonthlyWrap').removeChild(prevList[i]);
+        const processData = {
+            CP: {
+                '1cp': {
+                    WW26: { 'Total': 70, 'C/C': 55, 'DIFF': 75, 'ETCH': 50, 'IMP': 65, 'PHOTO': 60, 'T/F': 35 },
+                    WW27: { 'Total': 75, 'C/C': 60, 'DIFF': 80, 'ETCH': 55, 'IMP': 70, 'PHOTO': 65, 'T/F': 40 }
+                },
+                '2cp': {
+                    WW26: { 'Total': 72, 'C/C': 57, 'DIFF': 77, 'ETCH': 52, 'IMP': 67, 'PHOTO': 62, 'T/F': 37 },
+                    WW27: { 'Total': 77, 'C/C': 62, 'DIFF': 82, 'ETCH': 57, 'IMP': 72, 'PHOTO': 67, 'T/F': 42 }
+                }, '3cp': {
+                    WW26: { 'Total': 72, 'C/C': 57, 'DIFF': 77, 'ETCH': 52, 'IMP': 67, 'PHOTO': 62, 'T/F': 37 },
+                    WW27: { 'Total': 77, 'C/C': 62, 'DIFF': 82, 'ETCH': 57, 'IMP': 72, 'PHOTO': 67, 'T/F': 42 }
+                }, '4cp': {
+                    WW26: { 'Total': 72, 'C/C': 57, 'DIFF': 77, 'ETCH': 52, 'IMP': 67, 'PHOTO': 62, 'T/F': 37 },
+                    WW27: { 'Total': 77, 'C/C': 62, 'DIFF': 82, 'ETCH': 57, 'IMP': 72, 'PHOTO': 67, 'T/F': 42 }
+                }, '5cp': {
+                    WW26: { 'Total': 72, 'C/C': 57, 'DIFF': 77, 'ETCH': 52, 'IMP': 67, 'PHOTO': 62, 'T/F': 37 },
+                    WW27: { 'Total': 77, 'C/C': 62, 'DIFF': 82, 'ETCH': 57, 'IMP': 72, 'PHOTO': 67, 'T/F': 42 }
+                }
+            },
+            LC: {
+                '1lc': {
+                    WW26: { 'Total': 68, 'C/C': 53, 'DIFF': 73, 'ETCH': 48, 'IMP': 63, 'PHOTO': 58, 'T/F': 33 },
+                    WW27: { 'Total': 73, 'C/C': 58, 'DIFF': 78, 'ETCH': 53, 'IMP': 68, 'PHOTO': 63, 'T/F': 38 }
+                },
+                '2lc': {
+                    WW26: { 'Total': 70, 'C/C': 55, 'DIFF': 75, 'ETCH': 50, 'IMP': 65, 'PHOTO': 60, 'T/F': 35 },
+                    WW27: { 'Total': 75, 'C/C': 60, 'DIFF': 80, 'ETCH': 55, 'IMP': 70, 'PHOTO': 65, 'T/F': 40 }
+                },
+                '3lc': {
+                    WW26: { 'Total': 70, 'C/C': 55, 'DIFF': 75, 'ETCH': 50, 'IMP': 65, 'PHOTO': 60, 'T/F': 35 },
+                    WW27: { 'Total': 75, 'C/C': 60, 'DIFF': 80, 'ETCH': 55, 'IMP': 70, 'PHOTO': 65, 'T/F': 40 }
+                }
+                , '4lc': {
+                    WW26: { 'Total': 70, 'C/C': 55, 'DIFF': 75, 'ETCH': 50, 'IMP': 65, 'PHOTO': 60, 'T/F': 35 },
+                    WW27: { 'Total': 75, 'C/C': 60, 'DIFF': 80, 'ETCH': 55, 'IMP': 70, 'PHOTO': 65, 'T/F': 40 }
+                }
+            },
+            SP: {
+                '1sp': {
+                    WW26: { 'Total': 68, 'C/C': 53, 'DIFF': 73, 'ETCH': 48, 'IMP': 63, 'PHOTO': 58, 'T/F': 33 },
+                    WW27: { 'Total': 73, 'C/C': 58, 'DIFF': 78, 'ETCH': 53, 'IMP': 68, 'PHOTO': 63, 'T/F': 38 }
+                },
+                '2sp': {
+                    WW26: { 'Total': 70, 'C/C': 55, 'DIFF': 75, 'ETCH': 50, 'IMP': 65, 'PHOTO': 60, 'T/F': 35 },
+                    WW27: { 'Total': 75, 'C/C': 60, 'DIFF': 80, 'ETCH': 55, 'IMP': 70, 'PHOTO': 65, 'T/F': 40 }
+                },
+                '3sp': {
+                    WW26: { 'Total': 70, 'C/C': 55, 'DIFF': 75, 'ETCH': 50, 'IMP': 65, 'PHOTO': 60, 'T/F': 35 },
+                    WW27: { 'Total': 75, 'C/C': 60, 'DIFF': 80, 'ETCH': 55, 'IMP': 70, 'PHOTO': 65, 'T/F': 40 }
+                }
+                , '4sp': {
+                    WW26: { 'Total': 70, 'C/C': 55, 'DIFF': 75, 'ETCH': 50, 'IMP': 65, 'PHOTO': 60, 'T/F': 35 },
+                    WW27: { 'Total': 75, 'C/C': 60, 'DIFF': 80, 'ETCH': 55, 'IMP': 70, 'PHOTO': 65, 'T/F': 40 }
+                }
             }
+        };
 
-            for (let i = 0; i < lateList.length; i++) {
-                createLateBar(i + 1, lateList[i], lateList2[i]);
+        const moduleData = {
+            CP: {
+                '1cp': {
+                    WW26: { 'Total': 70, 'C/C': 55, 'DIFF': 75, 'ETCH': 50, 'IMP': 65, 'PHOTO': 60, 'T/F': 35 },
+                    WW27: { 'Total': 75, 'C/C': 60, 'DIFF': 80, 'ETCH': 55, 'IMP': 70, 'PHOTO': 65, 'T/F': 40 }
+                },
+                '2cp': {
+                    WW26: { 'Total': 72, 'C/C': 57, 'DIFF': 77, 'ETCH': 52, 'IMP': 67, 'PHOTO': 62, 'T/F': 37 },
+                    WW27: { 'Total': 77, 'C/C': 62, 'DIFF': 82, 'ETCH': 57, 'IMP': 72, 'PHOTO': 67, 'T/F': 42 }
+                }, '3cp': {
+                    WW26: { 'Total': 72, 'C/C': 57, 'DIFF': 77, 'ETCH': 52, 'IMP': 67, 'PHOTO': 62, 'T/F': 37 },
+                    WW27: { 'Total': 77, 'C/C': 62, 'DIFF': 82, 'ETCH': 57, 'IMP': 72, 'PHOTO': 67, 'T/F': 42 }
+                }, '4cp': {
+                    WW26: { 'Total': 72, 'C/C': 57, 'DIFF': 77, 'ETCH': 52, 'IMP': 67, 'PHOTO': 62, 'T/F': 37 },
+                    WW27: { 'Total': 77, 'C/C': 62, 'DIFF': 82, 'ETCH': 57, 'IMP': 72, 'PHOTO': 67, 'T/F': 42 }
+                }, '5cp': {
+                    WW26: { 'Total': 72, 'C/C': 57, 'DIFF': 77, 'ETCH': 52, 'IMP': 67, 'PHOTO': 62, 'T/F': 37 },
+                    WW27: { 'Total': 77, 'C/C': 62, 'DIFF': 82, 'ETCH': 57, 'IMP': 72, 'PHOTO': 67, 'T/F': 42 }
+                }
+            },
+            LC: {
+                '1lc': {
+                    WW26: { 'Total': 68, 'C/C': 53, 'DIFF': 73, 'ETCH': 48, 'IMP': 63, 'PHOTO': 58, 'T/F': 33 },
+                    WW27: { 'Total': 73, 'C/C': 58, 'DIFF': 78, 'ETCH': 53, 'IMP': 68, 'PHOTO': 63, 'T/F': 38 }
+                },
+                '2lc': {
+                    WW26: { 'Total': 70, 'C/C': 55, 'DIFF': 75, 'ETCH': 50, 'IMP': 65, 'PHOTO': 60, 'T/F': 35 },
+                    WW27: { 'Total': 75, 'C/C': 60, 'DIFF': 80, 'ETCH': 55, 'IMP': 70, 'PHOTO': 65, 'T/F': 40 }
+                },
+                '3lc': {
+                    WW26: { 'Total': 70, 'C/C': 55, 'DIFF': 75, 'ETCH': 50, 'IMP': 65, 'PHOTO': 60, 'T/F': 35 },
+                    WW27: { 'Total': 75, 'C/C': 60, 'DIFF': 80, 'ETCH': 55, 'IMP': 70, 'PHOTO': 65, 'T/F': 40 }
+                }
+                , '4lc': {
+                    WW26: { 'Total': 70, 'C/C': 55, 'DIFF': 75, 'ETCH': 50, 'IMP': 65, 'PHOTO': 60, 'T/F': 35 },
+                    WW27: { 'Total': 75, 'C/C': 60, 'DIFF': 80, 'ETCH': 55, 'IMP': 70, 'PHOTO': 65, 'T/F': 40 }
+                }
+            },
+            SP: {
+                '1sp': {
+                    WW26: { 'Total': 68, 'C/C': 53, 'DIFF': 73, 'ETCH': 48, 'IMP': 63, 'PHOTO': 58, 'T/F': 33 },
+                    WW27: { 'Total': 73, 'C/C': 58, 'DIFF': 78, 'ETCH': 53, 'IMP': 68, 'PHOTO': 63, 'T/F': 38 }
+                },
+                '2sp': {
+                    WW26: { 'Total': 70, 'C/C': 55, 'DIFF': 75, 'ETCH': 50, 'IMP': 65, 'PHOTO': 60, 'T/F': 35 },
+                    WW27: { 'Total': 75, 'C/C': 60, 'DIFF': 80, 'ETCH': 55, 'IMP': 70, 'PHOTO': 65, 'T/F': 40 }
+                },
+                '3sp': {
+                    WW26: { 'Total': 70, 'C/C': 55, 'DIFF': 75, 'ETCH': 50, 'IMP': 65, 'PHOTO': 60, 'T/F': 35 },
+                    WW27: { 'Total': 75, 'C/C': 60, 'DIFF': 80, 'ETCH': 55, 'IMP': 70, 'PHOTO': 65, 'T/F': 40 }
+                }
+                , '4sp': {
+                    WW26: { 'Total': 70, 'C/C': 55, 'DIFF': 75, 'ETCH': 50, 'IMP': 65, 'PHOTO': 60, 'T/F': 35 },
+                    WW27: { 'Total': 75, 'C/C': 60, 'DIFF': 80, 'ETCH': 55, 'IMP': 70, 'PHOTO': 65, 'T/F': 40 }
+                }
             }
-        }
+        };
 
-        onLoadLateData();
-    </script>
-    <script>
-        function changeProduct1(event) {
-            const btn_wrap = document.getElementsByClassName('btn_active');
 
-            for (let i = 0; i < btn_wrap.length; i++) {
-                btn_wrap[i].classList.remove('btn_active');
-            }
+        let selectedProduct = 'CP';
+        let selectedOptions = [];
+        let currentMode = 'month';
+        let currentTab = 'rate';
+        let selectedOption = null;
 
+        let currentProcessMode = 'process';
+
+        function changeProcessMode(event, mode) {
+            currentProcessMode = mode;
+
+            // 버튼 상태 업데이트
+            document.querySelectorAll('.btn_wrap2 > span').forEach(span => span.classList.remove('btn_active'));
             event.target.classList.add('btn_active');
+
+            // 타이틀 업데이트
+            document.getElementById('processTitle').innerText = mode === 'process' ? '공정별 합격률 (WW26 vs WW27)' : '모듈별 합격률 (WW26 vs WW27)';
+
+            // 데이터 업데이트
+            updateProcessChart();
+            updateProcessTable();
+        }
+
+        const pastelColors = [
+            'rgba(255, 179, 186, 0.6)', 'rgba(255, 223, 186, 0.6)', 'rgba(255, 255, 186, 0.6)',
+            'rgba(186, 255, 201, 0.6)', 'rgba(186, 225, 255, 0.6)', 'rgba(255, 204, 229, 0.6)',
+            'rgba(204, 255, 204, 0.6)', 'rgba(255, 255, 204, 0.6)', 'rgba(204, 229, 255, 0.6)'
+        ];
+
+        function createProductList() {
+            const productList = document.getElementsByClassName('product_list')[0];
+            const productList2 = document.getElementsByClassName('product_list')[1];
+
+            productList.innerHTML = '';
+            productList2.innerHTML = '';
+
+            for (let product in productOptions) {
+                const productItem = document.createElement('div');
+                productItem.className = 'product_item';
+                productItem.innerText = product;
+                productItem.onclick = changeProduct;
+                if (product === selectedProduct) {
+                    productItem.classList.add('product_active');
+                }
+                productList.appendChild(productItem);
+            }
+
+            for (let product in productOptions) {
+                const productItem = document.createElement('div');
+                productItem.className = 'product_item';
+                productItem.innerText = product;
+                productItem.onclick = changeProduct;
+                if (product === selectedProduct) {
+                    productItem.classList.add('product_active');
+                }
+                productList2.appendChild(productItem);
+            }
+        }
+
+        function createProductOptionList() {
+            const productOptionList = document.getElementsByClassName('product_option_list')[0];
+            const productOptionList2 = document.getElementsByClassName('product_option_list')[1];
+
+            productOptionList.innerHTML = '';
+            productOptionList2.innerHTML = '';
+
+            const options = currentMode === 'month' ? productOptions[selectedProduct].options : productOptions2[selectedProduct].options;
+            options.forEach(option => {
+                const optionItem = document.createElement('div');
+                optionItem.className = 'product_option_item';
+                optionItem.innerText = option;
+                optionItem.onclick = changeProductOption;
+                if (selectedOptions.includes(option)) {
+                    optionItem.classList.add('product_option_active');
+                }
+                productOptionList.appendChild(optionItem);
+            });
+
+            options.forEach(option => {
+                const optionItem = document.createElement('div');
+                optionItem.className = 'product_option_item';
+                optionItem.innerText = option;
+                optionItem.onclick = changeProductOption;
+                if (selectedOptions.includes(option)) {
+                    optionItem.classList.add('product_option_active');
+                }
+                productOptionList2.appendChild(optionItem);
+            });
         }
 
         function changeProduct(event) {
-            const productList = document.getElementsByClassName('product_active');
-
-            for (let i = 0; i < productList.length; i++) {
-                productList[i].classList.remove('product_active');
+            selectedProduct = event.target.innerText;
+            selectedOptions = [];
+            selectedOption = null;
+            createProductList();
+            createProductOptionList();
+            if (currentTab === 'rate') {
+                updateChart();
+            } else {
+                updateProcessChart();
+                updateProcessTable();
             }
-
-            event.target.classList.add('product_active');
         }
 
         function changeProductOption(event) {
-            if (event.target.classList.contains('product_option_active')) {
-                event.target.classList.remove('product_option_active');
+            const option = event.target.innerText;
+            if (currentTab === 'rate') {
+                if (selectedOptions.includes(option)) {
+                    selectedOptions = selectedOptions.filter(opt => opt !== option);
+                    event.target.classList.remove('product_option_active');
+                } else {
+                    selectedOptions.push(option);
+                    event.target.classList.add('product_option_active');
+                }
+                updateChart();
             } else {
+                selectedOption = option;
+                document.querySelectorAll('.product_option_item').forEach(item => item.classList.remove('product_option_active'));
                 event.target.classList.add('product_option_active');
+                updateProcessChart();
+                updateProcessTable();
             }
         }
 
+        let myChart;
+
+        function updateChart() {
+            const dataOptions = currentMode === 'month' ? productOptions[selectedProduct].data : productOptions2[selectedProduct].data;
+            const datasets = selectedOptions.map((option, index) => {
+                const color = pastelColors[index % pastelColors.length];
+                return [
+                    {
+                        type: 'line',
+                        label: option + ' (Line)',
+                        data: dataOptions[option].lateList,
+                        borderColor: color,
+                        backgroundColor: 'rgba(0, 0, 0, 0)',
+                        borderWidth: 2,
+                        fill: false
+                    },
+                    {
+                        type: 'bar',
+                        label: option + ' (Bar)',
+                        data: dataOptions[option].lateList,
+                        backgroundColor: color,
+                        borderColor: color,
+                        borderWidth: 1
+                    }
+                ];
+            }).flat();
+
+            const maxLength = Math.max(...selectedOptions.map(option => dataOptions[option].lateList.length));
+            const labels = currentMode === 'month'
+                ? Array.from({ length: maxLength }, (_, i) => `${i + 1}월`)
+                : Array.from({ length: maxLength }, (_, i) => `ww${String(i + 1).padStart(2, '0')}`);
+
+            const chartContainer = document.getElementById('chartContainer');
+            chartContainer.style.width = `${maxLength * 100}px`;
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            myChart = new Chart(ctx, {
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            min: 50,
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            align: 'end',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    yMin: 95,
+                                    yMax: 95,
+                                    borderColor: 'rgba(75, 192, 192, 0.4)',
+                                    borderWidth: 2,
+                                    label: {
+                                        content: '양산이관 95%',
+                                        enabled: true,
+                                        position: 'end'
+                                    }
+                                },
+                                line2: {
+                                    type: 'line',
+                                    yMin: 90,
+                                    yMax: 90,
+                                    borderColor: 'rgba(192, 75, 192, 0.4)',
+                                    borderWidth: 2,
+                                    label: {
+                                        content: 'CS qual 90%',
+                                        enabled: true,
+                                        position: 'end'
+                                    }
+                                },
+                                line3: {
+                                    type: 'line',
+                                    yMin: 85,
+                                    yMax: 85,
+                                    borderColor: 'rgba(192, 192, 75, 0.4)',
+                                    borderWidth: 2,
+                                    label: {
+                                        content: '개발 이관 85%',
+                                        enabled: true,
+                                        position: 'end'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+
+        let myChart2;
+        function updateProcessChart() {
+            const ctx = document.getElementById('processChart').getContext('2d');
+
+            const data = currentProcessMode === 'process' ? processData[selectedProduct][selectedOption] : moduleData[selectedProduct][selectedOption];
+
+            if (myChart2) {
+                myChart2.destroy();
+            }
+
+            myChart2 = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: currentProcessMode === 'process'
+                        ? ['Total', 'C/C', 'DIFF', 'ETCH', 'IMP', 'PHOTO', 'T/F']
+                        : ['Total', 'IBG', 'GT', 'SAC', 'SN', 'MLM1', 'MLM2'],
+                    datasets: [
+                        {
+                            label: 'WW26',
+                            data: Object.values(data.WW26),
+                            backgroundColor: 'rgba(192, 75, 75, 0.2)',
+                            borderColor: 'rgba(192, 75, 75, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'WW27',
+                            data: Object.values(data.WW27),
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateProcessTable() {
+            const tbody = document.getElementById('processTableBody');
+            const summary = document.getElementById('processSummary');
+
+            const data = currentProcessMode === 'process' ? processData[selectedProduct][selectedOption] : moduleData[selectedProduct][selectedOption];
+
+            tbody.innerHTML = `
+                <tr>
+                    <td>Control Out</td>
+                    <td>9/385 (2.34%)</td>
+                    <td>2/355 (0.56%)</td>
+                    <td>0/23 (0.00%)</td>
+                    <td>0/25 (0.00%)</td>
+                    <td>2/151 (1.32%)</td>
+                    <td>0/10 (0.00%)</td>
+                    <td>0/131 (0.00%)</td>
+                    <td>0/15 (0.00%)</td>
+                </tr>
+                <tr>
+                    <td>OCL Centering</td>
+                    <td>8/297 (2.69%)</td>
+                    <td>6/267 (2.25%)</td>
+                    <td>0/23 (0.00%)</td>
+                    <td>1/25 (4.00%)</td>
+                    <td>2/142 (1.41%)</td>
+                    <td>0/10 (0.00%)</td>
+                    <td>2/52 (3.85%)</td>
+                    <td>1/15 (6.67%)</td>
+                </tr>
+                <tr>
+                    <td>Scatter</td>
+                    <td>3/385 (0.78%)</td>
+                    <td>1/355 (0.28%)</td>
+                    <td>0/23 (0.00%)</td>
+                    <td>1/25 (4.00%)</td>
+                    <td>1/151 (0.66%)</td>
+                    <td>0/10 (0.00%)</td>
+                    <td>0/131 (0.00%)</td>
+                    <td>0/15 (0.00%)</td>
+                </tr>
+                <tr>
+                    <td>불량률</td>
+                    <td>16/385 (4.16%)</td>
+                    <td>6/355 (1.69%)</td>
+                    <td>0/23 (0.00%)</td>
+                    <td>1/25 (4.00%)</td>
+                    <td>2/151 (1.32%)</td>
+                    <td>0/10 (0.00%)</td>
+                    <td>2/131 (1.53%)</td>
+                    <td>1/15 (6.67%)</td>
+                </tr>
+                <tr>
+                    <td>One PTS</td>
+                    <td>369/385 (95.84%)</td>
+                    <td>349/355 (98.31%)</td>
+                    <td>23/23 (100.00%)</td>
+                    <td>24/25 (96.00%)</td>
+                    <td>149/151 (98.68%)</td>
+                    <td>10/10 (100.00%)</td>
+                    <td>129/131 (98.47%)</td>
+                    <td>14/15 (93.33%)</td>
+                </tr>
+            `;
+
+            summary.innerText = currentProcessMode === 'process'
+                ? '지난 주 대비 ETCH % 상승, PHOTO % 상승, C/C 유지, IMP 유지, T/F % 하락, DIFF 1 건, ETCH 5건, T/F 1건 검출 되었습니다.'
+                : '지난 주 대비 IBG % 상승, GT % 상승, SAC 유지, SN 유지, MLM1 % 하락, MLM2 % 하락 하였습니다.';
+        }
+        function changeValue(event, mode) {
+            document.querySelectorAll('.btn_wrap > span').forEach(span => span.classList.remove('btn_active'));
+            event.target.classList.add('btn_active');
+
+            currentMode = mode;
+            document.getElementById('chartTitle').innerText = mode === 'month' ? '월별 합격률' : '주별 합격률';
+            createProductOptionList();
+            updateChart();
+        }
+
+        function changeTab(event, tab) {
+            document.querySelectorAll('.tapBar > div').forEach(div => div.classList.remove('tap_active'));
+            event.target.classList.add('tap_active');
+
+            currentTab = tab;
+
+            selectedOptions = [];
+
+            if (tab === 'rate') {
+                document.getElementById('rateSection').style.display = 'flex';
+                document.getElementById('rateContent').style.display = 'block';
+                document.getElementById('processSection').style.display = 'none';
+                createProductOptionList();
+                updateChart();
+            } else {
+                document.getElementById('rateSection').style.display = 'none';
+                document.getElementById('rateContent').style.display = 'none';
+                document.getElementById('processSection').style.display = 'block';
+                createProductOptionList();
+                updateProcessChart();
+                updateProcessTable();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            createProductList();
+            createProductOptionList();
+            updateChart();
+        });
     </script>
 </body>
 
